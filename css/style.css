@@ -24,6 +24,13 @@ body {
     color: var(--text-color);
     background: var(--bg-color);
 }
+html::-webkit-scrollbar {
+    width: 0.5rem;
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb{
+    background: var(--main-color);
+}
 a {
     text-decoration: none;
 }
@@ -83,7 +90,30 @@ header {
     font-size: 20px;
 }
 .menu-icon {
-    
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5px;
+    cursor: pointer;
+    z-index: 200;
+    transform: 0.3s;
+}
+.menu-icon div {
+    display: block;
+    background: var(--bg-color);
+    height: 2px;
+    width: 23px;
+    transition: 0.3s;
+}
+.move .line1 {
+    transform: rotate(-45deg) translate(-5px,5px);
+}
+.move .line2 {
+    opacity: 0;
+}
+.move .line3 {
+    transform: rotate(45deg) translate(-5px,-5px);
 }
 .home {
     min-height: 650px;
@@ -505,5 +535,65 @@ header {
     }
     .logo {
         font-size: 1.25rem;
+    }
+    .menu-icon {
+        display: flex;
+    }
+    .navbar {
+        position: absolute;
+        top: 110%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 90vw;
+        background: var(--text-color);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 1rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .open-menu {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .nav-link {
+        display: block;
+        margin: 1rem 0;
+    }
+}
+@media (max-width:500px) {
+    .heading h2 br {
+        display: contents;
+    }
+    .service-content {
+        justify-content: center;
+    }
+    .products-content {
+        padding: 20px;
+        grid-template-columns: 1fr;
+    }
+    .footer {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width:380px) {
+    .home-text h1 {
+        font-size: 2rem;
+    }
+    .service-content {
+        grid-template-columns: repeat(auto-fit, minmax(auto,140px));
+    }
+    .ser-box img {
+        width: 80px;
+        height: 80px;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .heading h2 ,
+    .book-data h2 {
+        font-size: 1.4rem;
     }
 }
